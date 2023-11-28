@@ -2,91 +2,96 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,500&family=Montserrat:wght@400;500;600&display=swap');
 
+:root {
+	--header-height: 3.5rem;
+	/*========== Colors ==========*/
+	/*Color mode HSL(hue, saturation, lightness)*/
+	--first-color: hsl(230, 62%, 56%);
+	--title-color: hsl(230, 70%, 16%);
+	--text-color: hsl(230, 16%, 45%);
+	--border-color: hsl(230, 50%, 90%);
+	--white-color: hsl(0, 0%, 100%);
+	--body-color: hsl(230, 100%, 96%);
+	--container-color: hsl(230, 100%, 97%);
 
-:root{
-    --header-height: 3.5rem;
-  /*========== Colors ==========*/
-  /*Color mode HSL(hue, saturation, lightness)*/
-  --first-color: hsl(230, 62%, 56%);
-  --title-color: hsl(230, 70%, 16%);
-  --text-color: hsl(230, 16%, 45%);
-  --border-color: hsl(230, 50%, 90%);
-  --white-color: hsl(0, 0%, 100%);
-  --body-color: hsl(230, 100%, 96%);
-  --container-color: hsl(230, 100%, 97%);
+	/*============Font and tipography============*/
 
-/*============Font and tipography============*/
+	--body-font: 'Montagu Slab', serif;
+	--second-font: 'Montserrat', sans-serif;
+	--biggest-font-size: 2rem;
+	--h1-font-size: 1.5rem;
+	--h2-font-size: 1.25rem;
+	--h3-font-size: 1rem;
+	--normal-font-size: 0.938rem;
+	--small-font-size: 0.813rem;
+	--smaller-font-size: 0.75rem;
 
+	/*========== Font weight ==========*/
+	--font-regular: 400;
+	--font-medium: 500;
+	--font-semi-bold: 600;
 
---body-font: font-family: 'Montagu Slab', serif;
---second-font: font-family: 'Montserrat', sans-serif;
-
-  /*========== Font weight ==========*/
-  --font-regular: 400;
-  --font-medium: 500;
-  --font-semi-bold: 600;
-
-  /*========== z index ==========*/
-  --z-tooltip: 10;
-  --z-fixed: 100;
+	/*========== z index ==========*/
+	--z-tooltip: 10;
+	--z-fixed: 100;
 }
-
 
 /*=============== BASE ===============*/
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 body,
 input,
 button {
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
+	font-family: var(--body-font);
+	font-size: var(--normal-font-size);
 }
 
 body {
-  background-color: var(--body-color);
-  color: var(--text-color);
-  transition: background-color .4s;
+	background-color: var(--body-color);
+	color: var(--text-color);
+	transition: background-color 0.4s;
 }
-
 
 input,
 button {
-  border: none;
-  outline: none;
+	border: none;
+	outline: none;
 }
 
-h1, h2, h3, h4 {
-  color: var(--title-color);
-  font-family: var(--second-font);
-  font-weight: var(--font-medium);
+h1,
+h2,
+h3,
+h4 {
+	color: var(--title-color);
+	font-family: var(--second-font);
+	font-weight: var(--font-medium);
 }
 
 ul {
-  list-style: none;
+	list-style: none;
 }
 
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+	display: block;
+	max-width: 100%;
+	height: auto;
 }
 
 /*=============== THEME ===============*/
 /*========== Variables Dark theme ==========*/
-
 
 /*========== 
 	Color changes in some parts of 
@@ -95,31 +100,265 @@ img {
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
-  max-width: 1220px;
-  margin-inline: 1.5rem;
+	margin-inline: 1.5rem;
 }
 
 .grid {
-  display: grid;
-  gap: 1.5rem;
+	display: grid;
+	gap: 1.5rem;
 }
 
 .section {
-  padding-block: 5rem 1rem;
+	padding-block: 5rem 1rem;
 }
 
 .section__title {
-  text-align: center;
-  font-size: var(--h1-font-size);
-  font-family: var(--second-font);
-  margin-bottom: 2rem;
+	text-align: center;
+	font-size: var(--h1-font-size);
+	font-family: var(--second-font);
+	margin-bottom: 2rem;
 }
 
 .main {
-  overflow: hidden; /* For animation ScrollReveal */
+	overflow: hidden; /* For animation ScrollReveal */
 }
 
-
-
-
 /*=============== Header & nav ===============*/
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: var(--body-color);
+	z-index: var(--z-fixed);
+	transition: box-shadow 0.4s background-color 0.4s;
+}
+
+.nav {
+	height: var(--header-height);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.nav__logo {
+	display: inline-flex;
+	align-items: center;
+	column-gap: 0.5rem;
+	color: var(--first-color);
+	font-weight: var(--font-medium);
+}
+
+.nav__logo i {
+	font-size: 1.25rem;
+}
+
+/* navigation for mobile devices */
+
+@media screen and (max-width: 1150px) {
+	.nav__menu {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		background-color: var(--container-color);
+		box-shadow: 0 -8px 32px hsla(0, 0%, 0%, 0.1);
+		padding: 1.25rem 4rem;
+		transition: background-color 0.4s;
+	}
+}
+
+.nav__list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.nav__link {
+	color: var(--text-color);
+	transition: color 0.4s;
+}
+
+.nav__link span {
+	display: none;
+}
+.nav__link i {
+	font-size: 1.25rem;
+}
+.nav__link:hover {
+	color: var(--first-color);
+}
+
+.nav__actions {
+	display: flex;
+	align-items: center;
+	column-gap: 1rem;
+}
+
+.nav__actions i {
+	font-size: 1.25rem;
+	color: var(--title-color);
+	cursor: pointer;
+	transition: color 0.4;
+}
+
+.nav__actions i:hover {
+	color: var(--first-color);
+}
+
+/*=============== Search  ===============*/
+
+.search {
+	position: fixed;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: var(--z-fixed);
+	background-color: hsla(230, 12%, 95%, 0.6);
+	backdrop-filter: blur(16px);
+	padding: 8rem 1.5rem;
+	transition: top 0.4s;
+}
+
+.search__form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 0.5rem;
+	background-color: var(--container-color);
+	border: 2px solid var(--border-color);
+	padding-inline: 1rem;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.search__icon {
+	font-size: 1.25rem;
+	color: var(--title-color);
+}
+
+.search__input {
+	width: 100%;
+	padding-block: 1rem;
+	background-color: var(--container-color);
+	color: var(--text-color);
+}
+
+.search__close {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+	font-size: 2rem;
+	color: var(--title-color);
+	cursor: pointer;
+}
+
+/* show search */
+
+.show-search {
+	top: 0;
+}
+
+/*=============== Login ===============*/
+
+.login {
+	position: fixed;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: var(--z-fixed);
+	background-color: hsla(230, 12%, 96%, 0.6);
+	backdrop-filter: blur(16px);
+	align-items: center;
+
+	padding: 1.5rem;
+	text-align: center;
+	transition: top 0.4s;
+}
+
+.login__form {
+	background-color: var(--container-color);
+	padding: 1rem 1.5rem;
+	border: 2px solid var(--border-color);
+	row-gap: 1.25rem;
+}
+
+.login__title {
+	font-size: var(--h2-font-size);
+}
+
+.login__group {
+	row-gap: 1.25rem;
+}
+
+.login__label {
+	display: block;
+	text-align: initial;
+	color: var(--title-color);
+	font-weight: var(--font-medium);
+	margin-bottom: 0.25rem;
+}
+
+.login__input {
+	width: 100%;
+	background-color: var(--container-color);
+	border: 2px solid var(--border-color);
+	padding: 1rem;
+	color: var(--text-color);
+}
+
+.login__signup,
+.login__forgot {
+	display: block;
+	font-size: var(--small-font-size);
+}
+
+.login__signup {
+	margin-bottom: 0.5rem;
+}
+
+.login__signup a {
+	color: var(--first-color);
+	font-weight: var(--font-medium);
+}
+
+.login__forgot {
+	color: var(--first-color);
+	margin-bottom: 1.25rem;
+}
+
+.login__button {
+	width: 100%;
+	cursor: pointer;
+}
+.login__close {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+	font-size: 2rem;
+	color: var(--title-color);
+	cursor: pointer;
+}
+
+/*========== Button ==========*/
+.button {
+	display: inline-block;
+	background-color: var(--first-color);
+	color: var(--white-color);
+	font-weight: var(--font-semi-bold);
+	padding: 1rem 1.5rem;
+	transition: box-shadow 0.4s;
+}
+
+.button:hover {
+	box-shadow: 0 4px 32px hsla(230, 72%, 32%, 0.4);
+}
+
+/* show login */
+
+.show-login {
+	top: 0;
+}
